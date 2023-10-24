@@ -1,0 +1,33 @@
+/* size of pic carousel */
+.c-item{
+    height: 620px;
+}
+
+.c-img{
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4);
+}
+/* end of size pic of carousel */
+
+/* btn */
+button{
+    border: none;
+    background: black;
+    padding: 12px 30px;
+    border-radius: 50px;
+    color: white;
+    font-size: 15px;
+    transition: .4s;
+  }
+  button:hover{
+    transform: scale(1.3);
+    cursor: pointer;
+  }
+
+
+/* end of btn */
+
+#hero-carousel{
+  margin-top: 50px;
+}

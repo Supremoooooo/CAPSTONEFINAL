@@ -1,0 +1,89 @@
+
+
+.photo1{
+    width: 100%;
+    max-height: 60vh;
+    object-fit: cover;
+    margin-bottom: 100px;
+    margin-top: 80px;
+    position: relative;
+}
+.text {
+    position: absolute;
+    top: 40%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    font-size: 24px;
+    color: white; /* Text color */
+    background-color: rgba(0, 0, 0, 0.5); 
+    padding: 10px; 
+}
+
+
+.img-fluid{
+    max-width: 95%;
+    height: auto;
+
+}
+
+Footer{
+    margin-top: 100px;
+}
+
+.text-black-50{
+    display: flex;
+    text-align: center;
+
+}
+
+/* Input field */
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown {
+  width: 200px;
+}
+
+.dropdown select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  position: relative;
+  left: 30px;;
+}
+
+.placeholder {
+  color: #999; /* Placeholder text color */
+}
+  
+/* end of input field */
+
+.myDropdown1{
+  position: relative;
+  left: 30px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin: 15px;
+}
+
+.dropdown-container{
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+#btn1{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  position: relative;
+  left: 150px;
+}
