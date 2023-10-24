@@ -9,11 +9,12 @@ function Signin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [users, setUsers] = useState([]);
+  const [message, setMessage] = useState(false);
   console.log(password);
 
   useEffect(() => {
     const handleUsers = async () => {
-      const data = fetch('http://127.0.0.1:8000/api/users')
+      const data = await fetch('http://127.0.0.1:8000/api/users')
         .then((res) => res.json())
         .then((res) => {
           setUsers(res);
@@ -24,30 +25,22 @@ function Signin() {
 
   console.log(users);
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    users.forEach((element) => {
+    users.find((element) => {
+      console.log(element.email == email);
       if (element.email == email) {
-        users.forEach((element) => {
-          console.log(email);
-          console.log(element);
-          if (element.email == email) {
-            localStorage.setItem('email', element.email);
-            localStorage.setItem('id', element.id);
-            localStorage.setItem('name', element.name);
+        localStorage.setItem('email', element.email);
+        localStorage.setItem('id', element.id);
+        localStorage.setItem('name', element.name);
 
-            alert(
-              'Login Successfully. You will now be directed to the Home page.'
-            );
-            setEmail('');
-            setPassword('');
-            navigate('/');
-          }
-        });
-      } else if (element.email !== email) {
-        alert('User does not exist. Please sign up');
+        alert('Login Successfully. You will now be directed to the Home page.');
+        setEmail('');
+        setPassword('');
+        setMessage(false);
+        navigate('/');
       } else {
-        alert('Fill out the information first');
+        setMessage(true);
       }
     });
   };
@@ -58,7 +51,9 @@ function Signin() {
       <div className="mt-5 px-5">
         <div className="form-box register">
           <form onSubmit={handleLogin}>
-            <h2 style={{ color: '#c4103d' }}>Log in</h2>
+            <h2 style={{ color: '#c4103d' }} className="mt-5">
+              Log in
+            </h2>
 
             <div className="input-box">
               <span className="icon">
@@ -96,6 +91,11 @@ function Signin() {
             </p>
 
             <div className="login-register"></div>
+            {message && (
+              <h5 className="text-center text-danger">
+                User does not Exists! Please sign up.
+              </h5>
+            )}
           </form>
         </div>
       </div>

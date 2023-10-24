@@ -15,7 +15,7 @@ function Signup() {
     e.preventDefault();
 
     if (email != '' && password != '') {
-      const result = fetch('http://127.0.0.1:8000/api/user/create', {
+      const result = await fetch('http://127.0.0.1:8000/api/user/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -46,7 +46,9 @@ function Signup() {
       <div className="mt-5 px-5">
         <div className="form-box register">
           <form onSubmit={handleSignup}>
-            <h2 style={{ color: '#c4103d' }}>Sign Up</h2>
+            <h2 className="mt-5" style={{ color: '#c4103d' }}>
+              Sign Up
+            </h2>
 
             <div className="input-box">
               <span className="icon">
@@ -99,7 +101,7 @@ function Signup() {
 
             <div className="login-register">
               <p>
-                Already have an account? <Link to={'/Signin'}>Sign in</Link>
+                Already have an account? <Link to={'/Signin'}>Log in</Link>
               </p>
             </div>
           </form>

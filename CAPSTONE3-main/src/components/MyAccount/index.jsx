@@ -18,7 +18,6 @@ function LoginForm() {
       <div className="logincontainer">
         <div className="content">
           {/* <img className="logo" src="Images/logo.png" alt="logo" /> */}
-
           <div className="text-sci">
             <p>Our furniture is crafted with the utmost precision and care, ensuring durability and longevity.</p>
 
