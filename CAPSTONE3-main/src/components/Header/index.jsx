@@ -6,12 +6,11 @@ import Footer from '../Footer';
 import course3 from '../../assets/images/carouselimage/course3.jpg';
 import featured1 from '../../assets/images/carouselimage/featured1.png';
 import { Form } from 'react-bootstrap';
-import {useNavigate} from 'react-router-dom';
-import {MyContext} from './../../context/userContext';
+import { useNavigate } from 'react-router-dom';
+import { MyContext } from './../../context/userContext';
 
 const Header = () => {
-
-  const {state, setState} = useContext(MyContext);
+  const { state, setState } = useContext(MyContext);
 
   const navigate = useNavigate();
   const [branch, setBranch] = useState('');
@@ -24,30 +23,32 @@ const Header = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try{
-      const result = await fetch('http://127.0.0.1:8002/api/student/create', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        branch,
-        time,
-        date
+    try {
+      const result = await fetch('http://127.0.0.1:8000/api/student/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          branch,
+          time,
+          date,
+        }),
       })
-    }).then(res => res.json())
-      alert(result.message)
-      navigate('/')
-    
-    }catch(e){
-      console.log(e.message)
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          if (res.status == 200) {
+            alert('Enrolled successfully');
+            navigate('/');
+          }
+        });
+    } catch (e) {
+      console.log(e.message);
     }
-  }
+  };
 
-  useEffect(() => {
-  
-   
-  },[])
+  useEffect(() => {}, []);
 
   return (
     <>
@@ -81,54 +82,86 @@ const Header = () => {
             </p>
 
             <Form onSubmit={handleSubmit}>
-                <div className='container4'>
-                  <label className="myDropdown1" for="myDropdown">
-                    <strong>Classroom Branch</strong>:
-                  </label>
-                  <div className="dropdown-container">
-                    <div className="dropdown">
-                      <select id="myDropdown" onChange={(e) => setBranch(e.target.value)}>
-                        <option value="" disabled selected className="placeholder">
-                          Select an option
-                        </option>
-                        <option value="Batangas City">Batangas City</option>
-                        <option value="Laguna City">Laguna City</option>
-                        <option value="Alabang Town Center">Alabang Town Center</option>
-                      </select>
-                    </div>
+              <div className="container4">
+                <label className="myDropdown1" for="myDropdown">
+                  <strong>Classroom Branch</strong>:
+                </label>
+                <div className="dropdown-container">
+                  <div className="dropdown">
+                    <select
+                      id="myDropdown"
+                      onChange={(e) => setBranch(e.target.value)}
+                    >
+                      <option
+                        value=""
+                        disabled
+                        selected
+                        className="placeholder"
+                      >
+                        Select an option
+                      </option>
+                      <option value="Batangas City">Batangas City</option>
+                      <option value="Laguna City">Laguna City</option>
+                      <option value="Alabang Town Center">
+                        Alabang Town Center
+                      </option>
+                    </select>
                   </div>
-                  <label className="myDropdown1" for="myDropdown">
-                    <strong>Time</strong>:
-                  </label>
-                  <div className="dropdown-container">
-                    <div className="dropdown">
-                      <select id="myDropdown" onChange={(e) => setTime(e.target.value)}>
-                        <option value="" disabled selected className="placeholder">
-                          Select an option
-                        </option>
-                        <option value="7:00am - 12:00pm">7:00am - 12:00pm </option>
-                        <option value="12:00pm - 5:00pm">12:00pm - 5:00pm</option>
-                      </select>
-                    </div>
-                  </div>
-                  <label className="myDropdown1" for="myDropdown">
-                    <strong>Date</strong>:
-                  </label>
-                  <div className="dropdown-container">
-                    <div className="dropdown">
-                      <select id="myDropdown" onChange={(e) => setDate(e.target.value)}>
-                        <option value="" disabled selected className="placeholder">
-                          Select an option
-                        </option>
-                        <option value="October 1, 2023 onwards">October 1, 2023 onwards</option>
-                        <option value="November 1, 2023 onwards">November 1, 2023 onwards</option>
-                      </select>
-                    </div>
-                  </div>
-                  <button id="btn1" type="submit">
-                    ENROLL NOW
-                  </button>
                 </div>
+                <label className="myDropdown1" for="myDropdown">
+                  <strong>Time</strong>:
+                </label>
+                <div className="dropdown-container">
+                  <div className="dropdown">
+                    <select
+                      id="myDropdown"
+                      onChange={(e) => setTime(e.target.value)}
+                    >
+                      <option
+                        value=""
+                        disabled
+                        selected
+                        className="placeholder"
+                      >
+                        Select an option
+                      </option>
+                      <option value="7:00am - 12:00pm">
+                        7:00am - 12:00pm{' '}
+                      </option>
+                      <option value="12:00pm - 5:00pm">12:00pm - 5:00pm</option>
+                    </select>
+                  </div>
+                </div>
+                <label className="myDropdown1" for="myDropdown">
+                  <strong>Date</strong>:
+                </label>
+                <div className="dropdown-container">
+                  <div className="dropdown">
+                    <select
+                      id="myDropdown"
+                      onChange={(e) => setDate(e.target.value)}
+                    >
+                      <option
+                        value=""
+                        disabled
+                        selected
+                        className="placeholder"
+                      >
+                        Select an option
+                      </option>
+                      <option value="October 1, 2023 onwards">
+                        October 1, 2023 onwards
+                      </option>
+                      <option value="November 1, 2023 onwards">
+                        November 1, 2023 onwards
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <button id="btn1" type="submit">
+                  ENROLL NOW
+                </button>
+              </div>
             </Form>
           </div>
         </div>
